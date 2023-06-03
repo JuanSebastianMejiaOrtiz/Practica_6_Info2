@@ -11,6 +11,7 @@ public:
     //Public Methods
     planeta();
     planeta(short ID);
+    ~planeta();
 
         //Set and Get Methods
     short getID() const;

@@ -3,14 +3,25 @@
 
 planeta::planeta()
 {
+    //Set Pixmap
+    QPixmap img(":/Sprites/planeta.png");
+    *full = img.copy();
 
+    //Set Default Values
+    setID(0);
+    setX(0);
+    setY(0);
+    setVX(0);
+    setVY(0);
+    setAX(0);
+    setAY(0);
 }
 
 planeta::planeta(short ID)
 {
     //Set Pixmap
-    QPixmap img;
-    img.load("://Sprites/planeta.png");
+    QPixmap img(":/Sprites/planeta.png");
+    *full = img.copy();
 
     //Set Default Values
     setID(ID);
@@ -20,6 +31,11 @@ planeta::planeta(short ID)
     setVY(0);
     setAX(0);
     setAY(0);
+}
+
+planeta::~planeta()
+{
+
 }
 
 short planeta::getID() const

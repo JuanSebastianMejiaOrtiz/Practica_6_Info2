@@ -18,7 +18,7 @@ public:
     void add_Planet(short id);
 
     //Public Attributes
-    std::vector<planeta> *planets;   //All the planets
+    std::vector<planeta> planets;   //All the planets
 
 private:
     //Private Attributes
