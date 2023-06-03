@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Sprites/planeta.png</file>
+    </qresource>
+</RCC>
