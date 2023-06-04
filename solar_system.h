@@ -21,7 +21,8 @@ public:
 
     //Public Attributes
     std::vector<planeta> planets;    //All the planets
-    QTimer timer;
+    QTimer *timer;
+    int T, Sim_Speed;
     QString texto_sun;
 
 protected:

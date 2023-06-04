@@ -32,6 +32,20 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_POS_X_INITIAL_valueChanged(double arg1);
+
+    void on_POS_Y_INITIAL_valueChanged(double arg1);
+
+    void on_VEL_X_INITIAL_valueChanged(double arg1);
+
+    void on_VEL_Y_INITIAL_valueChanged(double arg1);
+
+    void on_ACELERATION_X_valueChanged(double arg1);
+
+    void on_ACELERATION_Y_valueChanged(double arg1);
+
+    void on_MASA_valueChanged(double arg1);
+
 private:
     Ui::MainWindow *ui;
 

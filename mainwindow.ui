@@ -17,7 +17,7 @@
    <widget class="QFrame" name="Properties_View">
     <property name="geometry">
      <rect>
-      <x>-220</x>
+      <x>10</x>
       <y>60</y>
       <width>220</width>
       <height>450</height>
@@ -54,10 +54,16 @@
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="3" column="0">
-        <widget class="QLabel" name="Vel_x_initial">
+       <item row="5" column="1">
+        <widget class="QDoubleSpinBox" name="ACELERATION_X"/>
+       </item>
+       <item row="6" column="1">
+        <widget class="QDoubleSpinBox" name="ACELERATION_Y"/>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="Aceleration_x_initial">
          <property name="text">
-          <string>Velocidad x inicial</string>
+          <string>Aceleracion x</string>
          </property>
         </widget>
        </item>
@@ -68,61 +74,65 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="1">
-        <widget class="QDoubleSpinBox" name="VEL_Y_INITIAL"/>
-       </item>
        <item row="6" column="0">
         <widget class="QLabel" name="Aceleration_y_initial">
          <property name="text">
-          <string>Aceleracion y inicial</string>
+          <string>Aceleracion y</string>
          </property>
         </widget>
        </item>
-       <item row="4" column="0">
-        <widget class="QLabel" name="Vel_y_initial">
+       <item row="3" column="0">
+        <widget class="QLabel" name="Vel_x_initial">
          <property name="text">
-          <string>Velocidad y inicial</string>
+          <string>Velocidad x</string>
          </property>
         </widget>
        </item>
-       <item row="6" column="1">
-        <widget class="QDoubleSpinBox" name="ACELERATION_Y"/>
+       <item row="4" column="1">
+        <widget class="QDoubleSpinBox" name="VEL_Y_INITIAL"/>
        </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="Pos_y_initial">
-         <property name="text">
-          <string>Posicion y inicial</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="1">
-        <widget class="QDoubleSpinBox" name="ACELERATION_X"/>
-       </item>
-       <item row="5" column="0">
-        <widget class="QLabel" name="Aceleration_x_initial">
-         <property name="text">
-          <string>Aceleracion x inicial</string>
-         </property>
-        </widget>
+       <item row="0" column="0">
+        <widget class="QComboBox" name="comboBox"/>
        </item>
        <item row="1" column="0">
         <widget class="QLabel" name="Pos_x_initial">
          <property name="text">
-          <string>Posicion x inicial</string>
+          <string>Posicion x</string>
          </property>
         </widget>
        </item>
        <item row="2" column="1">
         <widget class="QDoubleSpinBox" name="POS_Y_INITIAL"/>
        </item>
+       <item row="3" column="1">
+        <widget class="QDoubleSpinBox" name="VEL_X_INITIAL"/>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="Vel_y_initial">
+         <property name="text">
+          <string>Velocidad y</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="Pos_y_initial">
+         <property name="text">
+          <string>Posicion y</string>
+         </property>
+        </widget>
+       </item>
        <item row="1" column="1">
         <widget class="QDoubleSpinBox" name="POS_X_INITIAL"/>
        </item>
-       <item row="0" column="0">
-        <widget class="QComboBox" name="comboBox"/>
+       <item row="7" column="0">
+        <widget class="QLabel" name="Masa">
+         <property name="text">
+          <string>Masa</string>
+         </property>
+        </widget>
        </item>
-       <item row="3" column="1">
-        <widget class="QDoubleSpinBox" name="VEL_X_INITIAL"/>
+       <item row="7" column="1">
+        <widget class="QDoubleSpinBox" name="MASA"/>
        </item>
       </layout>
      </widget>

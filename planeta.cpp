@@ -34,8 +34,10 @@ planeta::planeta(short ID)
     QString qtexto = QString::fromStdString(id_string);
     QString default_planet;
     default_planet = "--------------";  //Parte Superior
-    default_planet = "|  Planeta " + qtexto + "  |";
-    default_planet = "--------------";  //Parte Inferior
+    default_planet = default_planet + "\n";
+    default_planet = default_planet + "|  Planeta " + qtexto + "  |";
+    default_planet = default_planet + "\n";
+    default_planet = default_planet + "--------------";  //Parte Inferior
 
     set_planet_Shape(default_planet);
 }
