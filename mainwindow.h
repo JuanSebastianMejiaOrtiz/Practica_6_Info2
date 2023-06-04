@@ -38,6 +38,8 @@ private:
     bool Properties_Pressed;
     int Properties_Counter;
 
+    void Set_Text_Sun();
+
 };
 
 #endif // MAINWINDOW_H

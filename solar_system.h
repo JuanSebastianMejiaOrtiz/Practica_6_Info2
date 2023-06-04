@@ -3,7 +3,7 @@
 #define SOLAR_SYSTEM_H
 
 #include "planeta.h"
-#include <vector>
+#include <map>
 #include "global_macros.h"
 
 
@@ -18,7 +18,7 @@ public:
     void add_Planet(short id);
 
     //Public Attributes
-    std::vector<planeta> planets;   //All the planets
+    std::map<short, planeta> planets;   //All the planets
 
 private:
     //Private Attributes

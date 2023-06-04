@@ -4,8 +4,7 @@
 planeta::planeta()
 {
     //Set Pixmap
-    QPixmap img(":/Sprites/planeta.png");
-    *full = img.copy();
+    full->load("://Sprites/planeta.png");
 
     //Set Default Values
     setID(0);
@@ -20,8 +19,7 @@ planeta::planeta()
 planeta::planeta(short ID)
 {
     //Set Pixmap
-    QPixmap img(":/Sprites/planeta.png");
-    *full = img.copy();
+    full->load("://Sprites/planeta.png");
 
     //Set Default Values
     setID(ID);

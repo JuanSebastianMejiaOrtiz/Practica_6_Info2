@@ -171,6 +171,19 @@
       <string>Propiedades de los planetas</string>
      </property>
     </widget>
+    <widget class="QLabel" name="Sun">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>200</y>
+       <width>111</width>
+       <height>131</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Label</string>
+     </property>
+    </widget>
    </widget>
    <zorder>Main_View</zorder>
    <zorder>Properties_View</zorder>

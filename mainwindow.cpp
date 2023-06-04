@@ -10,11 +10,12 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     Properties_Timer = new QTimer;
-
     Properties_Counter = Properties_View_Width * -1;
     Properties_Pressed = 0;
 
     connect(Properties_Timer, SIGNAL(timeout()), this, SLOT(Properties_View_Move()));
+
+    Set_Text_Sun();
 }
 
 MainWindow::~MainWindow()
@@ -69,5 +70,24 @@ void MainWindow::on_pushButton_clicked()
     texto = texto + std::to_string(num);
     QString qtexto = QString::fromStdString(texto);
     ui->comboBox->addItem(qtexto);
+}
+
+void MainWindow::Set_Text_Sun()
+{
+    QString texto_sun;
+
+    texto_sun = texto_sun + "         -------\n";  //Parte superior
+
+    texto_sun = texto_sun + "      _| \t  |_\n";
+    texto_sun = texto_sun + "   _|  \t     |_\n";
+    texto_sun = texto_sun + " _|      \t        |_\n";
+    texto_sun = texto_sun + "|         SUN          |\n";  //Parte central
+    texto_sun = texto_sun + " -|        \t        |-\n";
+    texto_sun = texto_sun + "    -|     \t     |-\n";
+    texto_sun = texto_sun + "       -|  \t  |-\n";
+
+    texto_sun = texto_sun + "         -------";  //Parte inferior
+
+    ui->Sun->setText(texto_sun);
 }
 
