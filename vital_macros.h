@@ -15,4 +15,8 @@
 #define Properties_View_Pos_y 60
 #define Properties_View_Pos_x_final 10
 
+//Planetas
+#define Planeta_Height 60
+#define Planeta_Width 80
+
 #endif // VITAL_MACROS_H

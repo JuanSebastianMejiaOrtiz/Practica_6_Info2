@@ -3,12 +3,14 @@
 
 solar_system::solar_system()
 {
+    timer = new QTimer;
+
     sun_mass = 1000;
 }
 
 solar_system::~solar_system()
 {
-
+    delete timer;
 }
 
 void solar_system::add_Planet(short id)

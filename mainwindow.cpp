@@ -11,11 +11,21 @@ MainWindow::MainWindow(QWidget *parent)
 
     Properties_Timer = new QTimer;
 
-    connect(timer, SIGNAL(timeout()), this, SLOT(Fisicas()));
+    connect(solar_system::timer, SIGNAL(timeout()), this, SLOT(Fisicas()));
     connect(Properties_Timer, SIGNAL(timeout()), this, SLOT(Properties_View_Move()));
 
     Set_Properties_Default();
     Set_Text_Sun();
+    sun_center_x = ui->Sun->x() + ui->Sun->width()/2;
+    sun_center_y = ui->Sun->y() + ui->Sun->height()/2;
+
+    maxax = 50;
+    maxay = 50;
+
+    T = 0.5;
+    ui->PERIODO->setValue(T);
+
+    solar_system::timer->start(T*1000);
 
 }
 
@@ -92,45 +102,80 @@ void MainWindow::calcular_fisicas(float Periodo, float Simulation_Speed)
     std::vector<planeta>::iterator i;
     std::vector<planeta>::iterator j;
     float ax, ay, vx, vy, x, y;
-    float vx0, vy0, x0, y0;
     float dx, dy, r, teta, m2;
     float ax1, ay1;
     float G = 1;
+    G = 6.6738e-11;
 
     for (i = planets.begin(); i != planets.end(); ++i) {
         ax = i->getAX();
         ay = i->getAY();
+        vx = i->getVX();
+        vy = i->getVY();
+        x = i->getX();
+        y = i->getY();
+
         for (j = planets.begin(); j != planets.end(); ++j) {
             if (i != j) {
-                dx = (j->getX()) - (i->getX());
-                dy = (j->getY()) - (i->getY());
-                r = std::sqrt((dx * dx) + (dy * dy));
+                dx = j->getX() - x;
+                dy = j->getY() - y;
+                r = std::sqrt(dx * dx + dy * dy);
                 teta = std::atan2(dy, dx);
                 m2 = j->getMass();
 
-                ax1 = (G * m2 / std::pow(r, 2)) * std::sin(teta);
-                ay1 = (G * m2 / std::pow(r, 2)) * std::cos(teta);
+                ax1 = (G * m2 / (r * r)) * std::cos(teta);
+                ay1 = (G * m2 / (r * r)) * std::sin(teta);
 
-                ax += ax1;
-                ay += ay1;
+                if (ax < maxax){
+                    ax += ax1;
+                }
+                else ax *= -1;
+
+                if (ay < maxay){
+                    ay += ay1;
+                }
+                else ax *= -1;
             }
         }
 
         // Actualizar las velocidades y posiciones del planeta
-        vx0 = i->getVX();
-        vy0 = i->getVY();
-        x0 = i->getX();
-        y0 = i->getY();
+        vx += ax * Periodo * Simulation_Speed;
+        vy += ay * Periodo * Simulation_Speed;
+        x += vx * Periodo * Simulation_Speed + (0.5 * ax * std::pow(Periodo * Simulation_Speed, 2));
+        y += vy * Periodo * Simulation_Speed + (0.5 * ay * std::pow(Periodo * Simulation_Speed, 2));
 
-        vx = vx0 + ax * Periodo * Simulation_Speed;
-        vy = vy0 + ay * Periodo * Simulation_Speed;
-        x = x0 + vx0 * Periodo * Simulation_Speed + (0.5 * ax * std::pow(Periodo * Simulation_Speed, 2));
-        y = y0 + vy0 * Periodo * Simulation_Speed + (0.5 * ay * std::pow(Periodo * Simulation_Speed, 2));
-
+        i->setAX(ax);
+        i->setAY(ay);
         i->setVX(vx);
         i->setVY(vy);
         i->setX(x);
         i->setY(y);
+
+        std::cout << "X " << i->getX() << '\n';
+        std::cout << "Y " << i->getY() << '\n';
+        std::cout << "VX " << i->getVX() << '\n';
+        std::cout << "VY " << i->getVY() << '\n';
+        std::cout << "AX " << i->getAX() << '\n';
+        std::cout << "AY " << i->getAY() << '\n';
+    }
+}
+
+void MainWindow::aplicar_fisicas()
+{
+    for (int i = 0; i < planets.size(); ++i) {
+        QLabel* label = planets[i].planet;
+
+        float x = planets[i].getX();
+        float y = planets[i].getY();
+        int width = Planeta_Width;
+        int height = Planeta_Height;
+
+        //label->setGeometry(static_cast<int>(x), static_cast<int>(y), width, height);
+        label->move(static_cast<int>(x), static_cast<int>(y));
+        label->show();
+
+        std::cout << "Label X " << label->y() << '\n';
+        std::cout << "Label Y " << label->x() << '\n';
     }
 }
 
@@ -149,6 +194,8 @@ void MainWindow::on_comboBox_currentIndexChanged(int index)
 
         ui->ACELERATION_X->setValue(planet.getAX());
         ui->ACELERATION_Y->setValue(planet.getAY());
+
+        ui->MASA->setValue(planet.getMass());
     }
 }
 
@@ -159,14 +206,13 @@ void MainWindow::on_pushButton_clicked()
     add_Planet(num);
     Combobox_text(num);
 
-
     QLabel *planetLabel = new QLabel(ui->Main_View);
     planetLabel->setText(planets.back().get_planet_Shape());
 
     int x = 0;
     int y = 0;
-    int width = 80;
-    int height = 60;
+    int width = Planeta_Width;
+    int height = Planeta_Height;
     planetLabel->setGeometry(x, y, width, height);
 
     planetLabel->show();
@@ -259,6 +305,7 @@ void MainWindow::on_MASA_valueChanged(double arg1)
 void MainWindow::on_PERIODO_valueChanged(double arg1)
 {
     T = arg1;
+    timer->start(T*1000);
 }
 
 

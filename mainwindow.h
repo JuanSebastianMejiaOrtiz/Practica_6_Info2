@@ -46,6 +46,12 @@ private slots:
 
     void on_MASA_valueChanged(double arg1);
 
+    void Fisicas();
+
+    void on_PERIODO_valueChanged(double arg1);
+
+    void on_SIMULACION_VELOCIDAD_valueChanged(double arg1);
+
 private:
     Ui::MainWindow *ui;
 
@@ -53,12 +59,16 @@ private:
     bool Properties_Pressed;
     int Properties_Counter;
 
+    float maxax, maxay;
+
     void Set_Properties_Default();
     void Set_Text_Sun();
 
     void Combobox_text(short num);
 
     void calcular_fisicas(float Periodo, float Simulation_Speed);
+
+    void aplicar_fisicas();
 
 };
 

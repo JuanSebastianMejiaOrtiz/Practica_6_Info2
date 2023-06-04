@@ -17,7 +17,7 @@
    <widget class="QFrame" name="Properties_View">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>-220</x>
       <y>60</y>
       <width>220</width>
       <height>450</height>
@@ -180,8 +180,8 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>200</width>
-      <height>70</height>
+      <width>800</width>
+      <height>91</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -207,6 +207,38 @@
      <property name="text">
       <string>Propiedades de los planetas</string>
      </property>
+    </widget>
+    <widget class="QWidget" name="gridLayoutWidget_2">
+     <property name="geometry">
+      <rect>
+       <x>620</x>
+       <y>0</y>
+       <width>175</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="1" column="1">
+       <widget class="QDoubleSpinBox" name="PERIODO"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="Periodo">
+        <property name="text">
+         <string>Periodo (s)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="Simulacion_Velocidad">
+        <property name="text">
+         <string>Velocidad Simulacion</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QDoubleSpinBox" name="SIMULACION_VELOCIDAD"/>
+      </item>
+     </layout>
     </widget>
    </widget>
    <zorder>Main_View</zorder>
