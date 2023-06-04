@@ -5,6 +5,7 @@
 #include "planeta.h"
 #include <vector>
 #include "global_macros.h"
+#include <QTimer>
 
 
 class solar_system
@@ -20,13 +21,11 @@ public:
 
     //Public Attributes
     std::vector<planeta> planets;    //All the planets
+    QTimer timer;
+    QString texto_sun;
 
-private:
-    //Private Attributes
-
-
-    //Private Methods
-
+protected:
+    float sun_mass;
 
 };
 

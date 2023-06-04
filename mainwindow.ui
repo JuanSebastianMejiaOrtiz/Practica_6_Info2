@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>600</height>
+    <height>610</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,9 +17,9 @@
    <widget class="QFrame" name="Properties_View">
     <property name="geometry">
      <rect>
-      <x>-200</x>
+      <x>-220</x>
       <y>60</y>
-      <width>200</width>
+      <width>220</width>
       <height>450</height>
      </rect>
     </property>
@@ -34,7 +34,7 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>200</width>
+       <width>220</width>
        <height>450</height>
       </rect>
      </property>
@@ -49,18 +49,32 @@
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>187</width>
+        <width>198</width>
         <height>421</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="3" column="1">
-        <widget class="QDoubleSpinBox" name="VEL_X_INITIAL"/>
+       <item row="3" column="0">
+        <widget class="QLabel" name="Vel_x_initial">
+         <property name="text">
+          <string>Velocidad x inicial</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="pushButton">
+         <property name="text">
+          <string>Nuevo Planeta</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QDoubleSpinBox" name="VEL_Y_INITIAL"/>
        </item>
        <item row="6" column="0">
         <widget class="QLabel" name="Aceleration_y_initial">
          <property name="text">
-          <string>Aceleracion y</string>
+          <string>Aceleracion y inicial</string>
          </property>
         </widget>
        </item>
@@ -71,26 +85,6 @@
          </property>
         </widget>
        </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="Vel_x_initial">
-         <property name="text">
-          <string>Velocidad x inicial</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="1">
-        <widget class="QDoubleSpinBox" name="VEL_Y_INITIAL"/>
-       </item>
-       <item row="5" column="0">
-        <widget class="QLabel" name="Aceleration_x_initial">
-         <property name="text">
-          <string>Aceleracion x</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QDoubleSpinBox" name="POS_X_INITIAL"/>
-       </item>
        <item row="6" column="1">
         <widget class="QDoubleSpinBox" name="ACELERATION_Y"/>
        </item>
@@ -98,6 +92,16 @@
         <widget class="QLabel" name="Pos_y_initial">
          <property name="text">
           <string>Posicion y inicial</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QDoubleSpinBox" name="ACELERATION_X"/>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="Aceleration_x_initial">
+         <property name="text">
+          <string>Aceleracion x inicial</string>
          </property>
         </widget>
        </item>
@@ -111,18 +115,14 @@
        <item row="2" column="1">
         <widget class="QDoubleSpinBox" name="POS_Y_INITIAL"/>
        </item>
-       <item row="5" column="1">
-        <widget class="QDoubleSpinBox" name="ACELERATION_X"/>
+       <item row="1" column="1">
+        <widget class="QDoubleSpinBox" name="POS_X_INITIAL"/>
        </item>
        <item row="0" column="0">
         <widget class="QComboBox" name="comboBox"/>
        </item>
-       <item row="0" column="1">
-        <widget class="QPushButton" name="pushButton">
-         <property name="text">
-          <string>Nuevo Planeta</string>
-         </property>
-        </widget>
+       <item row="3" column="1">
+        <widget class="QDoubleSpinBox" name="VEL_X_INITIAL"/>
        </item>
       </layout>
      </widget>
@@ -143,21 +143,48 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QGraphicsView" name="Solar_System_View">
+    <widget class="QLabel" name="Sun">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>800</width>
-       <height>600</height>
+       <x>350</x>
+       <y>200</y>
+       <width>85</width>
+       <height>131</height>
       </rect>
      </property>
+     <property name="text">
+      <string>         -------
+       _| 	 |_
+    _|    	    |_
+ _|      	        |_
+|         SUN          |
+ -|        	        |-
+    -|     	     |-
+       -|  	  |-
+         -------</string>
+     </property>
     </widget>
+   </widget>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>200</width>
+      <height>70</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
     <widget class="QCommandLinkButton" name="Properties_Button">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>10</y>
+       <x>0</x>
+       <y>30</y>
        <width>181</width>
        <height>31</height>
       </rect>
@@ -171,22 +198,10 @@
       <string>Propiedades de los planetas</string>
      </property>
     </widget>
-    <widget class="QLabel" name="Sun">
-     <property name="geometry">
-      <rect>
-       <x>350</x>
-       <y>200</y>
-       <width>111</width>
-       <height>131</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Label</string>
-     </property>
-    </widget>
    </widget>
    <zorder>Main_View</zorder>
    <zorder>Properties_View</zorder>
+   <zorder>frame</zorder>
   </widget>
  </widget>
  <resources/>

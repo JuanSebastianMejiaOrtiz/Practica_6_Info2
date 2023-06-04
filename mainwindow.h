@@ -4,6 +4,8 @@
 
 #include <QMainWindow>
 #include <QTimer>
+#include <cmath>
+
 #include "global_macros.h"
 #include "solar_system.h"
 
@@ -37,9 +39,12 @@ private:
     bool Properties_Pressed;
     int Properties_Counter;
 
+    void Set_Properties_Default();
     void Set_Text_Sun();
 
     void Combobox_text(short num);
+
+    void calcular_fisicas(float Periodo, float Simulation_Speed);
 
 };
 

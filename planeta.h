@@ -34,18 +34,26 @@ public:
     void setAY(float aynew);
     float getAY();
 
+    void setMass(float masa);
+    float getMass();
+
     void set_planet_Shape(QString shape);
     QString get_planet_Shape();
+
+    //Public Attributes
+    QLabel *planet;
 
 private:
     //Private Attributes
     float x, y; //Position in x and y
     float vx, vy; //Speed in x and y
     float ax, ay; //Aceleration in x and y
+    float mass;
 
     short id;
 
     QString planet_Shape;
+
 };
 
 #endif // PLANETA_H

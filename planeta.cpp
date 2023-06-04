@@ -3,6 +3,8 @@
 
 planeta::planeta()
 {
+    planet = new QLabel;
+
     //Set Default Values
     setID(0);  //ID
 
@@ -16,6 +18,8 @@ planeta::planeta()
 
 planeta::planeta(short ID)
 {
+    planet = new QLabel;
+
     //Set Default Values
     setID(ID);
     setX(0);
@@ -24,13 +28,16 @@ planeta::planeta(short ID)
     setVY(0);
     setAX(0);
     setAY(0);
+    setMass(0);
 
     std::string id_string = std::to_string(id);
     QString qtexto = QString::fromStdString(id_string);
     QString default_planet;
-    default_planet = "----------";  //Parte Superior
-    default_planet = "|  Planeta " + qtexto + "  ";
-    default_planet = "----------";
+    default_planet = "--------------";  //Parte Superior
+    default_planet = "|  Planeta " + qtexto + "  |";
+    default_planet = "--------------";  //Parte Inferior
+
+    set_planet_Shape(default_planet);
 }
 
 planeta::~planeta()
@@ -106,6 +113,16 @@ void planeta::setAY(float aynew)
 float planeta::getAY()
 {
     return ay;
+}
+
+void planeta::setMass(float masa)
+{
+    mass = masa;
+}
+
+float planeta::getMass()
+{
+    return mass;
 }
 
 void planeta::set_planet_Shape(QString shape)
