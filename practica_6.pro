@@ -9,14 +9,12 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    control_sprite.cpp \
     main.cpp \
     mainwindow.cpp \
     planeta.cpp \
     solar_system.cpp
 
 HEADERS += \
-    control_sprite.h \
     global_macros.h \
     mainwindow.h \
     planeta.h \

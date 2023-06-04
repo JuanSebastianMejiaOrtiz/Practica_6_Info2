@@ -3,11 +3,9 @@
 
 planeta::planeta()
 {
-    //Set Pixmap
-    full->load("://Sprites/planeta.png");
-
     //Set Default Values
-    setID(0);
+    setID(0);  //ID
+
     setX(0);
     setY(0);
     setVX(0);
@@ -18,9 +16,6 @@ planeta::planeta()
 
 planeta::planeta(short ID)
 {
-    //Set Pixmap
-    full->load("://Sprites/planeta.png");
-
     //Set Default Values
     setID(ID);
     setX(0);
@@ -29,6 +24,13 @@ planeta::planeta(short ID)
     setVY(0);
     setAX(0);
     setAY(0);
+
+    std::string id_string = std::to_string(id);
+    QString qtexto = QString::fromStdString(id_string);
+    QString default_planet;
+    default_planet = "----------";  //Parte Superior
+    default_planet = "|  Planeta " + qtexto + "  ";
+    default_planet = "----------";
 }
 
 planeta::~planeta()
@@ -104,6 +106,16 @@ void planeta::setAY(float aynew)
 float planeta::getAY()
 {
     return ay;
+}
+
+void planeta::set_planet_Shape(QString shape)
+{
+    planet_Shape = shape;
+}
+
+QString planeta::get_planet_Shape()
+{
+    return planet_Shape;
 }
 
 

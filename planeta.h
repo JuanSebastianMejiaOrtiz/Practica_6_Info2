@@ -2,10 +2,9 @@
 #ifndef PLANETA_H
 #define PLANETA_H
 
-#include "control_sprite.h"
 #include <QLabel>
 
-class planeta : public control_sprite
+class planeta
 {
 public:
     //Public Methods
@@ -35,6 +34,9 @@ public:
     void setAY(float aynew);
     float getAY();
 
+    void set_planet_Shape(QString shape);
+    QString get_planet_Shape();
+
 private:
     //Private Attributes
     float x, y; //Position in x and y
@@ -42,6 +44,8 @@ private:
     float ax, ay; //Aceleration in x and y
 
     short id;
+
+    QString planet_Shape;
 };
 
 #endif // PLANETA_H

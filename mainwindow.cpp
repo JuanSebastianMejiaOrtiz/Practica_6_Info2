@@ -64,30 +64,25 @@ void MainWindow::on_comboBox_currentIndexChanged(int index)
 
 void MainWindow::on_pushButton_clicked()
 {
-    int num = ui->comboBox->count() + 1;
+    short num = ui->comboBox->count() + 1;
+
+
+    Combobox_text(num);
+}
+
+void MainWindow::Set_Text_Sun()
+{
+    QString texto_sun = Sun_Text();
+
+    ui->Sun->setText(texto_sun);
+}
+
+void MainWindow::Combobox_text(short num)
+{
     std::string texto = "Planeta ";
 
     texto = texto + std::to_string(num);
     QString qtexto = QString::fromStdString(texto);
     ui->comboBox->addItem(qtexto);
-}
-
-void MainWindow::Set_Text_Sun()
-{
-    QString texto_sun;
-
-    texto_sun = texto_sun + "         -------\n";  //Parte superior
-
-    texto_sun = texto_sun + "      _| \t  |_\n";
-    texto_sun = texto_sun + "   _|  \t     |_\n";
-    texto_sun = texto_sun + " _|      \t        |_\n";
-    texto_sun = texto_sun + "|         SUN          |\n";  //Parte central
-    texto_sun = texto_sun + " -|        \t        |-\n";
-    texto_sun = texto_sun + "    -|     \t     |-\n";
-    texto_sun = texto_sun + "       -|  \t  |-\n";
-
-    texto_sun = texto_sun + "         -------";  //Parte inferior
-
-    ui->Sun->setText(texto_sun);
 }
 

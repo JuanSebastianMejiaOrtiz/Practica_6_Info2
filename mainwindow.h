@@ -5,6 +5,7 @@
 #include <QMainWindow>
 #include <QTimer>
 #include "global_macros.h"
+#include "solar_system.h"
 
 #include <iostream>
 
@@ -13,7 +14,7 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow
+class MainWindow : public QMainWindow, protected solar_system
 {
     Q_OBJECT
 
@@ -22,8 +23,6 @@ public:
     ~MainWindow();
 
 private slots:
-
-
     void on_Properties_Button_clicked();
     void Properties_View_Move();
 
@@ -39,6 +38,8 @@ private:
     int Properties_Counter;
 
     void Set_Text_Sun();
+
+    void Combobox_text(short num);
 
 };
 
