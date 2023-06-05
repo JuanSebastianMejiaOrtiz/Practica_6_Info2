@@ -59,7 +59,7 @@ private:
     bool Properties_Pressed;
     int Properties_Counter;
 
-    float maxax, maxay;
+    float maxvx, maxvy;
 
     void Set_Properties_Default();
     void Set_Text_Sun();

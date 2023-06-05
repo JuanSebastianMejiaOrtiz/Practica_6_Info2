@@ -19,10 +19,10 @@ MainWindow::MainWindow(QWidget *parent)
     sun_center_x = ui->Sun->x() + ui->Sun->width()/2;
     sun_center_y = ui->Sun->y() + ui->Sun->height()/2;
 
-    maxax = 50;
-    maxay = 50;
+    maxvx = 50;
+    maxvy = 50;
 
-    T = 0.5;
+    T = 0.01;
     ui->PERIODO->setValue(T);
 
     solar_system::timer->start(T*1000);
@@ -76,9 +76,9 @@ void MainWindow::Set_Text_Sun()
 {
     QString texto_sun = Sun_Text();
 
-    std::string st = texto_sun.toStdString();
-
     ui->Sun->setText(texto_sun);
+
+    ui->Sun->setStyleSheet("color: red;");
 }
 
 void MainWindow::Combobox_text(short num)
@@ -104,8 +104,8 @@ void MainWindow::calcular_fisicas(float Periodo, float Simulation_Speed)
     float ax, ay, vx, vy, x, y;
     float dx, dy, r, teta, m2;
     float ax1, ay1;
-    float G = 1;
-    G = 6.6738e-11;
+    float G;
+    G = 6.6738 * std::pow(10, -11);  //Constante de Gravedad Universal
 
     for (i = planets.begin(); i != planets.end(); ++i) {
         ax = i->getAX();
@@ -117,24 +117,30 @@ void MainWindow::calcular_fisicas(float Periodo, float Simulation_Speed)
 
         for (j = planets.begin(); j != planets.end(); ++j) {
             if (i != j) {
-                dx = j->getX() - x;
-                dy = j->getY() - y;
-                r = std::sqrt(dx * dx + dy * dy);
-                teta = std::atan2(dy, dx);
-                m2 = j->getMass();
+                dx = j->getX() - x;  //Posicion del otro cuerpo X
+                dy = j->getY() - y;  //Posicion del otro cuerpo Y
+                r = std::sqrt((dx * dx) + (dy * dy));  //Distancia entre 2 cuerpos
+                teta = std::atan2(dy, dx);  //Angulo vector de direccion
+                m2 = j->getMass();  //Masa del otro objeto
 
-                ax1 = (G * m2 / (r * r)) * std::cos(teta);
-                ay1 = (G * m2 / (r * r)) * std::sin(teta);
+                ax1 = (G * m2 / (r * r)) * (1/std::sin(teta));  //Aceleracion Gravitacional X
+                ay1 = (G * m2 / (r * r)) * std::sin(teta);  //Aceleracion Gravitacional Y
 
-                if (ax < maxax){
-                    ax += ax1;
-                }
-                else ax *= -1;
+//                if (ax < maxvx){
+//                    ax += ax1;
+//                }
+//                else vx *= -1;
 
-                if (ay < maxay){
-                    ay += ay1;
-                }
-                else ax *= -1;
+//                if (ay < maxvy){
+//                    ay += ay1;
+//                }
+//                else vy *= -1;
+
+                ax += ax1;
+                ay += ay1;
+
+                i->setAX(ax);
+                i->setAY(ay);
             }
         }
 
@@ -144,8 +150,6 @@ void MainWindow::calcular_fisicas(float Periodo, float Simulation_Speed)
         x += vx * Periodo * Simulation_Speed + (0.5 * ax * std::pow(Periodo * Simulation_Speed, 2));
         y += vy * Periodo * Simulation_Speed + (0.5 * ay * std::pow(Periodo * Simulation_Speed, 2));
 
-        i->setAX(ax);
-        i->setAY(ay);
         i->setVX(vx);
         i->setVY(vy);
         i->setX(x);
@@ -167,8 +171,8 @@ void MainWindow::aplicar_fisicas()
 
         float x = planets[i].getX();
         float y = planets[i].getY();
-        int width = Planeta_Width;
-        int height = Planeta_Height;
+        //int width = Planeta_Width;
+        //int height = Planeta_Height;
 
         //label->setGeometry(static_cast<int>(x), static_cast<int>(y), width, height);
         label->move(static_cast<int>(x), static_cast<int>(y));
