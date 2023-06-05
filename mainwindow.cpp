@@ -19,9 +19,6 @@ MainWindow::MainWindow(QWidget *parent)
     sun_center_x = ui->Sun->x() + ui->Sun->width()/2;
     sun_center_y = ui->Sun->y() + ui->Sun->height()/2;
 
-    maxvx = 50;
-    maxvy = 50;
-
     T = 0.01;
     ui->PERIODO->setValue(T);
 
@@ -126,16 +123,6 @@ void MainWindow::calcular_fisicas(float Periodo, float Simulation_Speed)
                 ax1 = (G * m2 / (r * r)) * (1/std::sin(teta));  //Aceleracion Gravitacional X
                 ay1 = (G * m2 / (r * r)) * std::sin(teta);  //Aceleracion Gravitacional Y
 
-//                if (ax < maxvx){
-//                    ax += ax1;
-//                }
-//                else vx *= -1;
-
-//                if (ay < maxvy){
-//                    ay += ay1;
-//                }
-//                else vy *= -1;
-
                 ax += ax1;
                 ay += ay1;
 
@@ -154,13 +141,6 @@ void MainWindow::calcular_fisicas(float Periodo, float Simulation_Speed)
         i->setVY(vy);
         i->setX(x);
         i->setY(y);
-
-        std::cout << "X " << i->getX() << '\n';
-        std::cout << "Y " << i->getY() << '\n';
-        std::cout << "VX " << i->getVX() << '\n';
-        std::cout << "VY " << i->getVY() << '\n';
-        std::cout << "AX " << i->getAX() << '\n';
-        std::cout << "AY " << i->getAY() << '\n';
     }
 }
 
@@ -171,15 +151,9 @@ void MainWindow::aplicar_fisicas()
 
         float x = planets[i].getX();
         float y = planets[i].getY();
-        //int width = Planeta_Width;
-        //int height = Planeta_Height;
 
-        //label->setGeometry(static_cast<int>(x), static_cast<int>(y), width, height);
         label->move(static_cast<int>(x), static_cast<int>(y));
         label->show();
-
-        std::cout << "Label X " << label->y() << '\n';
-        std::cout << "Label Y " << label->x() << '\n';
     }
 }
 
@@ -189,17 +163,28 @@ void MainWindow::on_comboBox_currentIndexChanged(int index)
     if (index >= 0 && index < planets.size())
     {
         planeta& planet = planets[index];
+        QString qtexto;
 
-        ui->POS_X_INITIAL->setValue(planet.getX());
-        ui->POS_Y_INITIAL->setValue(planet.getY());
+        qtexto = QString::number(planet.getX());
+        ui->POS_X_INITIAL->setText(qtexto);
 
-        ui->VEL_X_INITIAL->setValue(planet.getVX());
-        ui->VEL_Y_INITIAL->setValue(planet.getVY());
+        qtexto = QString::number(planet.getY());
+        ui->POS_Y_INITIAL->setText(qtexto);
 
-        ui->ACELERATION_X->setValue(planet.getAX());
-        ui->ACELERATION_Y->setValue(planet.getAY());
+        qtexto = QString::number(planet.getVX());
+        ui->VEL_X_INITIAL->setText(qtexto);
 
-        ui->MASA->setValue(planet.getMass());
+        qtexto = QString::number(planet.getVY());
+        ui->VEL_Y_INITIAL->setText(qtexto);
+
+        qtexto = QString::number(planet.getAX());
+        ui->ACELERATION_X->setText(qtexto);
+
+        qtexto = QString::number(planet.getAY());
+        ui->ACELERATION_Y->setText(qtexto);
+
+        qtexto = QString::number(planet.getMass());
+        ui->MASA->setText(qtexto);
     }
 }
 
@@ -222,99 +207,96 @@ void MainWindow::on_pushButton_clicked()
     planetLabel->show();
 }
 
-void MainWindow::on_POS_X_INITIAL_valueChanged(double arg1)
-{
-    int index = ui->comboBox->currentIndex();
-    if (index >= 0 && index < planets.size())
-    {
-        planeta& planet = planets[index];
-
-        planet.setX(arg1);
-    }
-}
-
-
-void MainWindow::on_POS_Y_INITIAL_valueChanged(double arg1)
-{
-    unsigned int index = ui->comboBox->currentIndex();
-    if (index >= 0 && index < planets.size())
-    {
-        planeta& planet = planets[index];
-
-        planet.setY(arg1);
-    }
-}
-
-
-void MainWindow::on_VEL_X_INITIAL_valueChanged(double arg1)
-{
-    unsigned int index = ui->comboBox->currentIndex();
-    if (index >= 0 && index < planets.size())
-    {
-        planeta& planet = planets[index];
-
-        planet.setVX(arg1);
-    }
-}
-
-
-void MainWindow::on_VEL_Y_INITIAL_valueChanged(double arg1)
-{
-    unsigned int index = ui->comboBox->currentIndex();
-    if (index >= 0 && index < planets.size())
-    {
-        planeta& planet = planets[index];
-
-        planet.setVY(arg1);
-    }
-}
-
-
-void MainWindow::on_ACELERATION_X_valueChanged(double arg1)
-{
-    unsigned int index = ui->comboBox->currentIndex();
-    if (index >= 0 && index < planets.size())
-    {
-        planeta& planet = planets[index];
-
-        planet.setAX(arg1);
-    }
-}
-
-
-void MainWindow::on_ACELERATION_Y_valueChanged(double arg1)
-{
-    unsigned int index = ui->comboBox->currentIndex();
-    if (index >= 0 && index < planets.size())
-    {
-        planeta& planet = planets[index];
-
-        planet.setAY(arg1);
-    }
-}
-
-
-void MainWindow::on_MASA_valueChanged(double arg1)
-{
-    unsigned int index = ui->comboBox->currentIndex();
-    if (index >= 0 && index < planets.size())
-    {
-        planeta& planet = planets[index];
-
-        planet.setMass(arg1);
-    }
-}
-
-
 void MainWindow::on_PERIODO_valueChanged(double arg1)
 {
     T = arg1;
-    timer->start(T*1000);
 }
-
 
 void MainWindow::on_SIMULACION_VELOCIDAD_valueChanged(double arg1)
 {
     Sim_Speed = arg1;
 }
 
+void MainWindow::on_POS_X_INITIAL_textChanged(const QString &arg1)
+{
+    int index = ui->comboBox->currentIndex();
+    float f = arg1.toFloat();
+    if (index >= 0 && index < planets.size())
+    {
+        planeta& planet = planets[index];
+
+        planet.setX(f);
+    }
+}
+
+void MainWindow::on_POS_Y_INITIAL_textChanged(const QString &arg1)
+{
+    int index = ui->comboBox->currentIndex();
+    float f = arg1.toFloat();
+    if (index >= 0 && index < planets.size())
+    {
+        planeta& planet = planets[index];
+
+        planet.setY(f);
+    }
+}
+
+void MainWindow::on_VEL_X_INITIAL_textChanged(const QString &arg1)
+{
+    int index = ui->comboBox->currentIndex();
+    float f = arg1.toFloat();
+    if (index >= 0 && index < planets.size())
+    {
+        planeta& planet = planets[index];
+
+        planet.setVX(f);
+    }
+}
+
+void MainWindow::on_VEL_Y_INITIAL_textChanged(const QString &arg1)
+{
+    int index = ui->comboBox->currentIndex();
+    float f = arg1.toFloat();
+    if (index >= 0 && index < planets.size())
+    {
+        planeta& planet = planets[index];
+
+        planet.setVY(f);
+    }
+}
+
+void MainWindow::on_ACELERATION_X_textChanged(const QString &arg1)
+{
+    int index = ui->comboBox->currentIndex();
+    float f = arg1.toFloat();
+    if (index >= 0 && index < planets.size())
+    {
+        planeta& planet = planets[index];
+
+        planet.setAX(f);
+    }
+}
+
+void MainWindow::on_ACELERATION_Y_textChanged(const QString &arg1)
+{
+    int index = ui->comboBox->currentIndex();
+    float f = arg1.toFloat();
+    if (index >= 0 && index < planets.size())
+    {
+        planeta& planet = planets[index];
+
+        planet.setAY(f);
+    }
+}
+
+void MainWindow::on_MASA_textChanged(const QString &arg1)
+{
+    int index = ui->comboBox->currentIndex();
+    float f = arg1.toFloat();
+    if (index >= 0 && index < planets.size())
+    {
+        planeta& planet = planets[index];
+
+        planet.setMass(f);
+    }
+}

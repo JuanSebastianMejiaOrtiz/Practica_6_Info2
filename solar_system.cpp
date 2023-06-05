@@ -4,8 +4,6 @@
 solar_system::solar_system()
 {
     timer = new QTimer;
-
-    sun_mass = 1000;
 }
 
 solar_system::~solar_system()

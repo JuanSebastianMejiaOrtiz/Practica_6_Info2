@@ -25,32 +25,25 @@ public:
     ~MainWindow();
 
 private slots:
+    //Generales de la GUI
     void on_Properties_Button_clicked();
     void Properties_View_Move();
-
     void on_comboBox_currentIndexChanged(int index);
-
     void on_pushButton_clicked();
 
-    void on_POS_X_INITIAL_valueChanged(double arg1);
-
-    void on_POS_Y_INITIAL_valueChanged(double arg1);
-
-    void on_VEL_X_INITIAL_valueChanged(double arg1);
-
-    void on_VEL_Y_INITIAL_valueChanged(double arg1);
-
-    void on_ACELERATION_X_valueChanged(double arg1);
-
-    void on_ACELERATION_Y_valueChanged(double arg1);
-
-    void on_MASA_valueChanged(double arg1);
-
-    void Fisicas();
-
+    //Valores modificables dentro de la GUI
     void on_PERIODO_valueChanged(double arg1);
-
     void on_SIMULACION_VELOCIDAD_valueChanged(double arg1);
+    void on_POS_X_INITIAL_textChanged(const QString &arg1);
+    void on_POS_Y_INITIAL_textChanged(const QString &arg1);
+    void on_VEL_X_INITIAL_textChanged(const QString &arg1);
+    void on_VEL_Y_INITIAL_textChanged(const QString &arg1);
+    void on_ACELERATION_X_textChanged(const QString &arg1);
+    void on_ACELERATION_Y_textChanged(const QString &arg1);
+    void on_MASA_textChanged(const QString &arg1);
+
+    //Fisicas
+    void Fisicas();
 
 private:
     Ui::MainWindow *ui;
@@ -59,15 +52,13 @@ private:
     bool Properties_Pressed;
     int Properties_Counter;
 
-    float maxvx, maxvy;
-
     void Set_Properties_Default();
     void Set_Text_Sun();
 
     void Combobox_text(short num);
 
+    //Fisicas
     void calcular_fisicas(float Periodo, float Simulation_Speed);
-
     void aplicar_fisicas();
 
 };

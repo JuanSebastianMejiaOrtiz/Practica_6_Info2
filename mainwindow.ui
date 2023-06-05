@@ -54,12 +54,6 @@
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="5" column="1">
-        <widget class="QDoubleSpinBox" name="ACELERATION_X"/>
-       </item>
-       <item row="6" column="1">
-        <widget class="QDoubleSpinBox" name="ACELERATION_Y"/>
-       </item>
        <item row="5" column="0">
         <widget class="QLabel" name="Aceleration_x_initial">
          <property name="text">
@@ -88,9 +82,6 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="1">
-        <widget class="QDoubleSpinBox" name="VEL_Y_INITIAL"/>
-       </item>
        <item row="0" column="0">
         <widget class="QComboBox" name="comboBox"/>
        </item>
@@ -100,12 +91,6 @@
           <string>Posicion x</string>
          </property>
         </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QDoubleSpinBox" name="POS_Y_INITIAL"/>
-       </item>
-       <item row="3" column="1">
-        <widget class="QDoubleSpinBox" name="VEL_X_INITIAL"/>
        </item>
        <item row="4" column="0">
         <widget class="QLabel" name="Vel_y_initial">
@@ -121,9 +106,6 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
-        <widget class="QDoubleSpinBox" name="POS_X_INITIAL"/>
-       </item>
        <item row="7" column="0">
         <widget class="QLabel" name="Masa">
          <property name="text">
@@ -131,8 +113,26 @@
          </property>
         </widget>
        </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="POS_X_INITIAL"/>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="POS_Y_INITIAL"/>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="VEL_X_INITIAL"/>
+       </item>
+       <item row="4" column="1">
+        <widget class="QLineEdit" name="VEL_Y_INITIAL"/>
+       </item>
+       <item row="5" column="1">
+        <widget class="QLineEdit" name="ACELERATION_X"/>
+       </item>
+       <item row="6" column="1">
+        <widget class="QLineEdit" name="ACELERATION_Y"/>
+       </item>
        <item row="7" column="1">
-        <widget class="QDoubleSpinBox" name="MASA"/>
+        <widget class="QLineEdit" name="MASA"/>
        </item>
       </layout>
      </widget>
@@ -224,7 +224,7 @@
       <item row="1" column="0">
        <widget class="QLabel" name="Periodo">
         <property name="text">
-         <string>Periodo (s)</string>
+         <string>Periodo (segundos)</string>
         </property>
        </widget>
       </item>
